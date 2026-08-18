@@ -51,9 +51,11 @@ with col_left:
     st.subheader("MRR Growth Trajectory")
     # FIX: Added a stable uniform integer baseline of 30 to fix the shape/broadcasting error
     chart_data = pd.DataFrame(
-        np.random.randn(10, 2).cumsum() + 30,
-        columns=['Actual MRR', 'Projected Target']
-    )
+    np.random.randn(10, 2).cumsum(axis=0) + 30,  
+    # Added axis=0
+    columns=['Actual MRR', 'Projected Target']
+)
+
     st.line_chart(chart_data)
 
 with col_right:
