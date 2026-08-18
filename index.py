@@ -45,7 +45,7 @@ col4.metric(label="New Signups", value="1,240", delta="+185")
 st.markdown("---")
 
 # Charts / Detailed Data Section
-col_left, col_right = st.columns()
+col_left, col_right = st.columns(4)
 
 with col_left:
     st.subheader("MRR Growth Trajectory")
