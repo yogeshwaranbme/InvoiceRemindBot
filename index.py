@@ -40,17 +40,18 @@ col1, col2, col3, col4 = st.columns(4)
 col1.metric(label="Monthly Recurring Revenue", value="$48,250", delta="+12%")
 col2.metric(label="Net Revenue Retention", value="108%", delta="+2%")
 col3.metric(label="User Churn Rate", value="2.1%", delta="-0.4%")
-col4.nic = col4.metric(label="New Signups", value="1,240", delta="+185")
+col4.metric(label="New Signups", value="1,240", delta="+185")
 
 st.markdown("---")
 
 # Charts / Detailed Data Section
-col_left, col_right = st.columns([2, 1])
+col_left, col_right = st.columns()
 
 with col_left:
     st.subheader("MRR Growth Trajectory")
+    # FIX: Added a stable uniform integer baseline of 30 to fix the shape/broadcasting error
     chart_data = pd.DataFrame(
-        np.random.randn(10, 2).cumsum() + [20, 40],
+        np.random.randn(10, 2).cumsum() + 30,
         columns=['Actual MRR', 'Projected Target']
     )
     st.line_chart(chart_data)
@@ -59,7 +60,7 @@ with col_right:
     st.subheader("Conversion by Plan")
     source_data = pd.DataFrame({
         'Plan': ['Free Trial', 'Pro Tier', 'Enterprise'],
-        'Users': [850, 320, 70]
+        'Users': [450, 320, 85]
     })
     st.bar_chart(source_data, x='Plan', y='Users')
 
